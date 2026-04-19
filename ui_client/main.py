@@ -1,5 +1,5 @@
 """
-FastAPI application for the SalesShortcut UI Client.
+FastAPI application for the outbound-agents UI Client.
 
 Provides a web interface to manage sales agent workflows including lead finding,
 SDR engagement, lead management, and calendar scheduling. Features real-time

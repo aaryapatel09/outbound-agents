@@ -1,17 +1,15 @@
 """
-SalesShortcut A2A Project
-========================
+outbound-agents
+===============
 
-A comprehensive sales automation platform featuring AI agents for lead finding,
-SDR engagement, lead management, and calendar scheduling.
+Multi-agent SDR pipeline built on Google ADK + A2A. Services:
 
-Services:
-- Lead Finder: Discovers potential business leads
-- SDR Agent: Engages and qualifies prospects
-- Lead Manager: Converts qualified leads
-- Calendar Agent: Schedules meetings
-- UI Client: Web interface for monitoring and control
+- Lead Finder: discovers potential business leads via Google Maps + BigQuery
+- SDR Agent: researches, drafts proposals, runs voice + email outreach
+- Lead Manager: tracks conversion status, schedules meetings
+- UI Client: web dashboard for monitoring and control
+- Gmail PubSub: ingests reply events and routes them back into the pipeline
 """
 
 __version__ = "1.0.0"
-__author__ = "SalesShortcut Team"
+__author__ = "aaryapatel09"
