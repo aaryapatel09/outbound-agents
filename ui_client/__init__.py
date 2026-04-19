@@ -1,5 +1,5 @@
 """
-UI Client module for SalesShortcut application.
+UI Client module for the outbound-agents application.
 
 Provides a web interface to manage and monitor sales agent workflows,
 including lead finding, SDR engagement, lead management, and calendar scheduling.

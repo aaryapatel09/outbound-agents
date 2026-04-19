@@ -1,6 +1,6 @@
 # common/config.py
 """
-Central configuration file for SalesShortcut application.
+Central configuration file for the outbound-agents application.
 
 Provides port configurations and default parameters for all agents and services.
 """

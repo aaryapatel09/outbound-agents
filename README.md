@@ -1,10 +1,10 @@
-# 🚀 SalesShortcut - AI-Powered SDR Agent System
+# outbound-agents
 
-A comprehensive AI-powered Sales Development Representative (SDR) system built with multi-agent architecture for automated lead generation, research, proposal generation, and outreach.
+Multi-agent SDR pipeline: Google Maps lead discovery → LLM research → personalized proposals → voice calls + email outreach. Built on Google ADK and the A2A (agent-to-agent) protocol.
 
-## 🎯 Project Overview
+## Project overview
 
-SalesShortcut is a sales automation and engagement platform that **finds, creates, and converts leads** through intelligent AI agents. The system automatically discovers potential business leads, researches their needs, creates personalized proposals, and manages outreach campaigns including phone calls and email communication.
+`outbound-agents` is a five-service agent system that automates the full outbound SDR workflow. Point it at a city and a business type; it discovers local prospects, researches each one, generates a tailored proposal, places an AI voice call, and follows up over email — tracking the whole funnel in a live dashboard.
 
 ## 🏗️ Architecture
 
