@@ -27,7 +27,7 @@ The Gmail PubSub Listener is a real-time email monitoring service that uses Goog
 
 ## 🏗️ Architecture
 
-The Gmail PubSub Listener operates as a bridge between Gmail and the SalesShortcut system:
+The Gmail PubSub Listener operates as a bridge between Gmail and the outbound-agents system:
 
 ```mermaid
 graph TD
