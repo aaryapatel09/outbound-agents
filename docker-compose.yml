@@ -1,0 +1,102 @@
+# One-command local dev loop for outbound-agents.
+#
+#   cp config.template .env   # or copy your own
+#   docker compose up --build
+#
+# Services reach each other over the internal bridge network via container
+# names (e.g. LEAD_FINDER_SERVICE_URL=http://lead_finder:8081). Ports are also
+# published to localhost for direct browser access / debugging.
+#
+# Tested with Docker Compose v2. To run a single service: docker compose up ui_client.
+
+name: outbound-agents
+
+x-shared-env: &shared_env
+  # Service discovery — override the 127.0.0.1 defaults in common/config.py so
+  # the containers talk over the docker bridge instead of looping back to themselves.
+  LEAD_FINDER_SERVICE_URL: http://lead_finder:8081
+  LEAD_MANAGER_SERVICE_URL: http://lead_manager:8082
+  SDR_SERVICE_URL: http://sdr:8084
+  GMAIL_LISTENER_URL: http://gmail_listener:8083
+  UI_CLIENT_SERVICE_URL: http://ui_client:8000
+  # These are read by most agents; keep a single source in .env.
+  GOOGLE_API_KEY: ${GOOGLE_API_KEY}
+  GOOGLE_MAPS_API_KEY: ${GOOGLE_MAPS_API_KEY:-}
+  GOOGLE_CLOUD_PROJECT: ${GOOGLE_CLOUD_PROJECT:-}
+  MODEL: ${MODEL:-gemini-2.0-flash-lite}
+
+services:
+  lead_finder:
+    build:
+      context: .
+      dockerfile: Dockerfile.lead_finder
+    environment:
+      <<: *shared_env
+      PORT: "8081"
+    ports:
+      - "8081:8081"
+    healthcheck:
+      test: ["CMD-SHELL", "python -c 'import urllib.request,sys; sys.exit(0 if urllib.request.urlopen(\"http://127.0.0.1:8081/.well-known/agent.json\", timeout=2).status==200 else 1)' || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+  lead_manager:
+    build:
+      context: .
+      dockerfile: Dockerfile.lead_manager
+    environment:
+      <<: *shared_env
+      PORT: "8082"
+    ports:
+      - "8082:8082"
+
+  sdr:
+    build:
+      context: .
+      dockerfile: Dockerfile.sdr
+    environment:
+      <<: *shared_env
+      PORT: "8084"
+      ELEVENLABS_API_KEY: ${ELEVENLABS_API_KEY:-}
+      ELEVENLABS_AGENT_ID: ${ELEVENLABS_AGENT_ID:-}
+      ELEVENLABS_PHONE_NUMBER_ID: ${ELEVENLABS_PHONE_NUMBER_ID:-}
+      TWILIO_ACCOUNT_SID: ${TWILIO_ACCOUNT_SID:-}
+      TWILIO_AUTH_TOKEN: ${TWILIO_AUTH_TOKEN:-}
+      TWILIO_PHONE_NUMBER: ${TWILIO_PHONE_NUMBER:-}
+      SMTP_SERVER: ${SMTP_SERVER:-}
+      SMTP_PORT: ${SMTP_PORT:-587}
+      EMAIL_USERNAME: ${EMAIL_USERNAME:-}
+      EMAIL_PASSWORD: ${EMAIL_PASSWORD:-}
+      FROM_EMAIL: ${FROM_EMAIL:-}
+    ports:
+      - "8084:8084"
+    depends_on:
+      - lead_manager
+
+  gmail_listener:
+    build:
+      context: .
+      dockerfile: gmail_pubsub_listener/Dockerfile
+    environment:
+      <<: *shared_env
+      PORT: "8083"
+    ports:
+      - "8083:8083"
+    depends_on:
+      - lead_manager
+
+  ui_client:
+    build:
+      context: .
+      dockerfile: Dockerfile.ui_client
+    environment:
+      <<: *shared_env
+      PORT: "8000"
+    ports:
+      - "8000:8000"
+    depends_on:
+      - lead_finder
+      - lead_manager
+      - sdr

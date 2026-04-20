@@ -6,6 +6,16 @@ Multi-agent SDR pipeline: Google Maps lead discovery → LLM research → person
 
 `outbound-agents` is a five-service agent system that automates the full outbound SDR workflow. Point it at a city and a business type; it discovers local prospects, researches each one, generates a tailored proposal, places an AI voice call, and follows up over email — tracking the whole funnel in a live dashboard.
 
+## One-command local dev
+
+```bash
+cp config.template .env          # fill in GOOGLE_API_KEY at minimum
+docker compose up --build        # brings up all 5 services on 8000, 8081-8084
+# UI: http://localhost:8000
+```
+
+Services discover each other over the internal Docker bridge — see `docker-compose.yml`. For a non-Docker workflow, `./deploy_local.sh` runs the same five services directly with Python.
+
 ## 🏗️ Architecture
 
 ![Architecture Diagram](./assets/architecture.svg)
