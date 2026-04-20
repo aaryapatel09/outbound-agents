@@ -1,4 +1,4 @@
-# 🖥️ UI Client - SalesShortcut Dashboard
+# 🖥️ UI Client — outbound-agents dashboard
 
 A modern, real-time web dashboard for managing AI-powered sales lead generation and qualification workflows. This application provides a centralized interface to monitor and control multiple sales agents working together to find, qualify, and schedule meetings with potential customers.
 
@@ -25,7 +25,7 @@ A modern, real-time web dashboard for managing AI-powered sales lead generation 
 
 ## 🏗️ Architecture
 
-The UI Client serves as the central orchestration point for the SalesShortcut platform:
+The UI Client serves as the central orchestration point for the outbound-agents platform:
 
 ```
 ┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐

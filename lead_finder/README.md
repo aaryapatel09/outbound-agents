@@ -1,8 +1,9 @@
-# = Lead Finder - Business Lead Discovery Agent
+# =
+ Lead Finder - Business Lead Discovery Agent
 
 The Lead Finder Agent is a sophisticated multi-agent system designed to discover and process business leads for website development services. It combines Google Maps Places API integration with intelligent business analysis to identify potential customers who lack website presence.
 
-## =€ Features
+## =ï¿½ Features
 
 - **Geographic Business Discovery**: Find businesses in any specified city using Google Maps
 - **Multi-Source Data Collection**: Parallel search from Google Maps and custom clusters
@@ -10,10 +11,10 @@ The Lead Finder Agent is a sophisticated multi-agent system designed to discover
 - **Real-time BigQuery Integration**: Store and manage leads in a structured database
 - **Comprehensive Business Data**: Collect contact info, ratings, categories, and location data
 - **Deduplication and Validation**: Ensure data quality and uniqueness
-- **A2A Integration**: Seamless communication with other SalesShortcut agents
+- **A2A Integration**: Seamless communication with other outbound-agents services
 - **UI Client Callbacks**: Real-time updates to the dashboard
 
-## =Ë Table of Contents
+## =ï¿½ Table of Contents
 
 - [Architecture](#architecture)
 - [Installation](#installation)
@@ -27,7 +28,7 @@ The Lead Finder Agent is a sophisticated multi-agent system designed to discover
 - [Deployment](#deployment)
 - [Troubleshooting](#troubleshooting)
 
-## <× Architecture
+## <ï¿½ Architecture
 
 The Lead Finder follows a hierarchical multi-agent architecture with parallel processing capabilities:
 
@@ -54,7 +55,7 @@ graph TD
 5. **Storage Layer**: BigQuery integration with structured schemas
 6. **Communication Layer**: UI client callbacks and A2A messaging
 
-## =à Installation
+## =ï¿½ Installation
 
 ### Prerequisites
 
@@ -169,7 +170,7 @@ gcloud projects add-iam-policy-binding $GOOGLE_CLOUD_PROJECT \
   --role="roles/bigquery.dataEditor"
 ```
 
-## =Ö Usage
+## =ï¿½ Usage
 
 ### Starting the Lead Finder
 
@@ -184,7 +185,7 @@ curl http://localhost:8081/health
 ### Finding Leads
 
 #### Via UI Client
-1. Open the SalesShortcut dashboard
+1. Open the outbound-agents dashboard
 2. Enter a target city name
 3. Click "Start Lead Finding"
 4. Monitor real-time results in the dashboard
@@ -241,7 +242,7 @@ message = {
 
 ```python
 # Location: lead_finder/lead_finder/agent.py
-# Workflow: PotentialLeadFinderAgent ’ MergerAgent
+# Workflow: PotentialLeadFinderAgent ï¿½ MergerAgent
 ```
 
 **Responsibilities**:
@@ -320,7 +321,7 @@ message = {
 5. Send callbacks to UI client
 6. Return final merged results
 
-## =à Tools
+## =ï¿½ Tools
 
 ### 1. Google Maps Search Tool
 **File**: `lead_finder/tools/maps_search.py`
@@ -416,7 +417,7 @@ results = search_businesses_clusters(
 - Social media business discovery
 - Industry-specific searches
 
-## =Ê Data Collection
+## =ï¿½ Data Collection
 
 ### Business Data Structure
 
@@ -519,7 +520,7 @@ The Lead Finder sends real-time updates to the UI client:
 }
 ```
 
-## =à Development
+## =ï¿½ Development
 
 ### Running in Development Mode
 
@@ -647,7 +648,8 @@ export LOG_LEVEL="WARNING"
 export MODEL="gemini-2.0-flash-lite"
 ```
 
-## = Troubleshooting
+## =
+ Troubleshooting
 
 ### Common Issues
 
@@ -724,7 +726,7 @@ BATCH_SIZE = 100
 # Use async operations for better performance
 ```
 
-## =Ê Monitoring
+## =ï¿½ Monitoring
 
 ### Key Metrics
 
@@ -757,11 +759,11 @@ logger.info("Lead finding completed", extra={
 })
 ```
 
-## =Ä License
+## =ï¿½ License
 
 This project is licensed under the MIT License - see the [LICENSE](../LICENSE) file for details.
 
-## <˜ Support
+## <ï¿½ Support
 
 For issues, questions, or feature requests:
 
